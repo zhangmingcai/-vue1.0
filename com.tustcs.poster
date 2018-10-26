@@ -1,0 +1,430 @@
+注：1：所有请求均为post请求
+    2：还差一个正式上传海报的接口，后面补上。
+
+
+1设备
+//设备的注册
+http://localhost:8080/api/device/addDevice?deviceName=%E5%B9%B3%E6%9D%BF3%E5%8F%B7&&deviceToken=2a2e8fb0a4ea73723af35cb9e797ae16&&deviceGroupId=5&&posterGroupId=2
+{"msg":"注册成功","status":1}
+
+
+http://localhost:8080/api/device/updateDeviceToken
+{
+  "deviceToken": "da39288127e7c90f6a4c9f456b40641f",
+  "deviceId": "2",          前两个为上传的值，后面的为返回的值
+  "msg":"修改成功",
+  "status":1
+} 
+这个是新添加的接口，只用来修改deviceToken
+http://localhost:8080/api/device/updateDevice
+{
+  "deviceToken": "da39288127e7c90f6a4c9f456b40641f",
+  "deviceName": "123",
+  "deviceGroupId": "2",
+  "posterGroupId": "2",
+  "deviceId": "2",          前五个为上传的值，后面的为返回的值
+  "msg":"修改成功",
+  "status":1
+} 
+这个是以前的接口，以前没有修改deviceToken的，现在加了这么一个
+
+
+//设备的删除    
+http://localhost:8080/api/device/deleteDevice?deviceId=20
+{"msg":"删除成功","status":1}                                                          
+//查询单个设备信息  
+http://localhost:8080/api/device/queryDeviceInfo?deviceId=21       对
+{"posterGroupName":"666666","queryDeviceInfo":{"posterGroupId":1,"deviceGroupId":1,"latitude":0.0,"deviceId":21,"deviceName":"asd","deviceToken":"ad0234829205b9033196ba818f7a872b","longitude":0.0,"lastUpdateTime":"1477208017706"},"deviceGroupName":"测试1组","status":1}
+    
+    //全部设备信息查询                                                               
+http://localhost:8080/api/device/queryDeviceList?deviceGroupId=0&&posterGroupId=0&&pageNumber=0    
+{"deviceList":[{"posterGroupName":"666666","posterGroupId":1,"deviceGroupId":5,"latitude":0.0,"deviceGroupName":"暂无分组","deviceId":23,"deviceName":"fan","deviceToken":"86985e105f79b95d6bc918fb45ec7727","longitude":0.0,"lastUpdateTime":"1477208017817"},{"posterGroupName":"666666","posterGroupId":1,"deviceGroupId":1,"latitude":0.0,"deviceGroupName":"测试1组","deviceId":21,"deviceName":"tt121231231","deviceToken":"ad0234829205b9033196ba818f7a872b","longitude":0.0,"lastUpdateTime":"1477208017706"},{"posterGroupName":"465465","posterGroupId":2,"deviceGroupId":1,"latitude":0.0,"deviceGroupName":"测试1组","deviceId":19,"deviceName":"asdsadfa","deviceToken":"f6f4061a1bddc1c04d8109b39f581270","longitude":0.0,"lastUpdateTime":"1477208017105"},{"posterGroupName":"666666","posterGroupId":1,"deviceGroupId":1,"latitude":0.0,"deviceGroupName":"测试1组","deviceId":18,"deviceName":"66666","deviceToken":"da39288127e7c90f6a4c9f456b4064","longitude":0.0,"lastUpdateTime":"1477193055586"},{"posterGroupName":"666666","posterGroupId":1,"deviceGroupId":1,"latitude":0.0,"deviceGroupName":"测试1组","deviceId":17,"deviceName":"qaz","deviceToken":"da39288127e7c90f6a4c9f456b40641f","longitude":0.0,"lastUpdateTime":"1477192358241"},{"posterGroupName":"666666","posterGroupId":1,"deviceGroupId":1,"latitude":0.0,"deviceGroupName":"测试1组","deviceId":16,"deviceName":"qwe","deviceToken":"da39288127e7c90f6a4c9f456b40641f","longitude":0.0,"lastUpdateTime":"1477192325686"},{"posterGroupName":"465465","posterGroupId":2,"deviceGroupId":1,"latitude":0.0,"deviceGroupName":"测试1组","deviceId":15,"deviceName":"null","deviceToken":"da39288127e7c90f6a4c9f456b40641f","longitude":0.0,"lastUpdateTime":"1477192172488"},{"posterGroupName":"465465","posterGroupId":2,"deviceGroupId":2,"latitude":0.0,"deviceGroupName":"暂无分组","deviceId":14,"deviceName":"kong","deviceToken":"da39288127e7c90f6a4c9f456b40641f","longitude":0.0,"lastUpdateTime":"1477110593822"},{"posterGroupName":"465465","posterGroupId":2,"deviceGroupId":5,"latitude":0.0,"deviceGroupName":"暂无分组","deviceId":13,"deviceName":"tttt955995995559","deviceToken":"98cace28e9bd1bd4cfe0b4f0c7c49792","longitude":0.0,"lastUpdateTime":"1458048639004"},{"posterGroupName":"465465","posterGroupId":2,"deviceGroupId":5,"latitude":0.0,"deviceGroupName":"暂无分组","deviceId":7,"deviceName":"ttttttttt","deviceToken":"2a2e8fb0a4ea73723af35cb9e797ae12","longitude":0.0,"lastUpdateTime":"1457869831199"}],"deviceNumber":10,"status":1}
+                                                                                         5
+  //更新设备                                                                         
+http://localhost:8080/api/device/updateDevice?deviceId=13&&deviceName=tttt955995995559&&deviceGroupId=5&&posterGroupId=2
+                                                                                         更
+ //模糊匹配设备名                                                                    
+http://localhost:8080/api/device/searchDeviceList?deviceName=tt     
+{"status":1,"searchDeviceList":[{"posterGroupId":2,"deviceGroupId":5,"latitude":0.0,"deviceId":7,"deviceName":"ttttttttt","deviceToken":"2a2e8fb0a4ea73723af35cb9e797ae12","longitude":0.0,"lastUpdateTime":"1457869831199"},{"posterGroupId":1,"deviceGroupId":1,"latitude":0.0,"deviceId":21,"deviceName":"tt121231231","deviceToken":"ad0234829205b9033196ba818f7a872b","longitude":0.0,"lastUpdateTime":"1477208017706"}]}
+                                                                                         //
+2设备分组
+//设备分组的添加
+http://localhost:8080/api/deviceGroup/addGroup?groupName=kong&&groupDesc=nicai
+{"msg":"添加成功","status":1}                                                          
+//设备分组的修改
+http://localhost:8080/api/deviceGroup/updateGroup?groupId=7&&groupName=1321321123j&&groupDesc=cnm&&updateTime=201410
+{"msg":"修改成功","status":1}                                                          
+ //设备分组的删除 
+http://localhost:8080/api/deviceGroup/deleteGroup?groupId=8
+{"msg":"分组删除成功","status":1}                                                      
+ //请求单个设备分组详情 
+http://localhost:8080/api/deviceGroup/queryGroupInfo?groupId=7
+{"groupInfo":{"groupName":"test2","groupDesc":"test","addTime":"1477192070720","groupId":7,"updateTime":"12345636"},"status":1}
+
+  //请求全部设备分组信息
+http://localhost:8080/api/deviceGroup/queryGroupList?pageNumber=0
+{"deviceGroupNumber":3,"groupList":[{"groupName":"1321321123j","groupDesc":"cnm","addTime":"1477192070720","groupId":7,"updateTime":201410},{"groupName":"test3","groupDesc":"test","addTime":"1475722122495","groupId":6,"updateTime":12345636},{"groupName":"测试1组","groupDesc":"","addTime":"","groupId":1,"updateTime":20}],"status":1}
+
+
+
+                                                                                         /
+3文件管理
+//先上传图片后面还要添加desc再正式上传
+localhost:8080/api/file/uploadFile
+file:文件流
+{
+  "fileName": "butterfly.jpg",
+  "fileKey": "34d98c7f3e663232d76ef7f41e07c65c",
+  "url": "http://oc3d2gkrr.bkt.clouddn.com/34d98c7f3e663232d76ef7f41e07c65c?e=1633014455&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:GMtPOHtZAS1xE3GCb3Ad5wgsLfk=",
+  "status": 1
+}
+
+//文件的删除
+http://localhost:8080/api/file/deleteFile?fileId=13
+{"msg":"删除成功","status":1} 
+
+//请求单个海报信息                                                        
+http://localhost:8080/api/file/queryFileInfo?fileId=12
+{"fileInfo":{"deleteFlag":0,"fileName":"d2F0ZXIuanBn","addTime":"1476765606857","fileKey":"1efcc20fa4000d0694c7fbde16dfe2b0","fileAddress":"","fileDesc":" ","fileType":"jpg","url":"http://oc3d2gkrr.bkt.clouddn.com/1efcc20fa4000d0694c7fbde16dfe2b0?e=1633015739&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:HNGZopZZs9rqCSqXS-8UCIbUfD0=","fileId":12},"status":1}
+
+//全部海报信息
+http://localhost:8080/api/file/queryFileList?pageNumber=0
+{"fileNumber":6,"fileList":[{"deleteFlag":0,"fileName":"d2F0ZXIuanBn","addTime":"1476765606857","fileKey":"1efcc20fa4000d0694c7fbde16dfe2b0","fileAddress":"","fileDesc":" ","fileType":"jpg","url":"http://oc3d2gkrr.bkt.clouddn.com/1efcc20fa4000d0694c7fbde16dfe2b0?e=1633015821&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:Hhpxg2OHs_7ZR8p884VOsIRzRFw=","fileId":12},{"deleteFlag":0,"fileName":"anlqeWp5anlpLm1wNA==","addTime":"1476754963855","fileKey":"da39288127e7c90f6a4c9f456b40641f","fileAddress":"","fileDesc":"tu","fileType":"jpg","url":"http://oc3d2gkrr.bkt.clouddn.com/da39288127e7c90f6a4c9f456b40641f?e=1633015821&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:616T8tO9DSgu95SxpbdR07uW59I=","fileId":11},{"deleteFlag":0,"fileName":"anlqeWp5anlpLm1wNA==","addTime":"1476605092941","fileKey":"da39288127e7c90f6a4c9f456b40641f","fileAddress":"","fileDesc":"tu","fileType":"Zmxvd2VyLmpwZw==","url":"http://oc3d2gkrr.bkt.clouddn.com/da39288127e7c90f6a4c9f456b40641f?e=1633015821&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:616T8tO9DSgu95SxpbdR07uW59I=","fileId":9},{"deleteFlag":0,"fileName":"anlqeWp5anlpLm1wNA==","addTime":"1476541402614","fileKey":"da39288127e7c90f6a4c9f456b40641f","fileAddress":"","fileDesc":"tu","fileType":"jpg","url":"http://oc3d2gkrr.bkt.clouddn.com/da39288127e7c90f6a4c9f456b40641f?e=1633015821&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:616T8tO9DSgu95SxpbdR07uW59I=","fileId":8},{"deleteFlag":0,"fileName":"anlqeWp5anlpLm1wNA==","addTime":"1457860251582","fileKey":"da39288127e7c90f6a4c9f456b40641f","fileAddress":"","fileDesc":"tu","fileType":"mp4","url":"http://oc3d2gkrr.bkt.clouddn.com/da39288127e7c90f6a4c9f456b40641f?e=1633015821&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:616T8tO9DSgu95SxpbdR07uW59I=","fileId":4},{"deleteFlag":0,"fileName":"bmkuanBn","addTime":"1457859639036","fileKey":"418c3e279dc89516cb8a7040979ddf76","fileAddress":"","fileDesc":"tustsi","fileType":"jpg","url":"http://oc3d2gkrr.bkt.clouddn.com/418c3e279dc89516cb8a7040979ddf76?e=1633015821&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:q7zSa3Bco-sAPt147OO739nzij4=","fileId":3}],"status":1}
+
+ //文件名，备注的修改
+http://localhost:8080/api/file/updateFile?fileId=12&&fileName=adkjahsdk.mp4&&fileDesc=kongkong
+{"msg":"修改成功","status":"1"}                                                        
+http://localhost:8080/api/file/srarchFileList?fileName=anlpLm1wNA&&pageNumber=0
+{"srarchFileList":[{"deleteFlag":0,"fileName":"anlqeWp5anlpLm1wNA==","addTime":"1476754963855","fileKey":"da39288127e7c90f6a4c9f456b40641f","fileAddress":"","fileDesc":"tu","fileType":"jpg","fileId":11},{"deleteFlag":0,"fileName":"anlqeWp5anlpLm1wNA==","addTime":"1476605092941","fileKey":"da39288127e7c90f6a4c9f456b40641f","fileAddress":"","fileDesc":"tu","fileType":"Zmxvd2VyLmpwZw==","fileId":9},{"deleteFlag":0,"fileName":"anlqeWp5anlpLm1wNA==","addTime":"1476541402614","fileKey":"da39288127e7c90f6a4c9f456b40641f","fileAddress":"","fileDesc":"tu","fileType":"jpg","fileId":8},{"deleteFlag":0,"fileName":"anlqeWp5anlpLm1wNA==","addTime":"1457860251582","fileKey":"da39288127e7c90f6a4c9f456b40641f","fileAddress":"","fileDesc":"tu","fileType":"mp4","fileId":4}],"status":1}
+ 
+
+                                                                                       /
+4海报的播放表
+//海报播放时间，等级，播放列表的添加
+http://localhost:8080/api/fileGroup/addFileGroup?posterGroupId=1&&fileId=13&&showLevel=1&&showTime=2
+{"msg":"注册成功","status":1}                                                          
+ //播放表的删除  
+http://localhost:8080/api/fileGroup/deleteFileGroup?recId=6
+{"msg":"删除成功","status":1}                                                         
+//海报播放表所有信息的修改  
+http://localhost:8080/api/fileGroup/updateFileGroup?recId=1&&posterGroupId=3&&fileId=3&&showLevel=3&&showTime=9
+{"msg":"修改成功","status":1}                                                        
+
+//修改海报播放时间    
+http://localhost:8080/api/fileGroup/changeShowTime?recId=1&&showTime=6
+{"msg":"修改成功","status":1}                                                         
+//修改海报播放等级   
+http://localhost:8080/api/fileGroup/changeShowLevel?recId=1&&showLevel=5‘
+{"msg":"修改成功","status":1}                                                         
+//查询posterid=1的所有播放计划   
+http://localhost:8080/api/fileGroup/queryFileGroup?posterGroupId=1&&pageNumber=0     
+{"fileLest":[{"groupName":"666666","fileName":"dGlnZXIuanBn","fileUrl":"http://oc3d2gkrr.bkt.clouddn.com/418c3e279dc89516cb8a7040979ddf76?e=1632973003&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:cQDSJLFZKHCFTfH2LsS7Om1cJls=","posterGroupId":1,"showTime":0,"fileKey":"418c3e279dc89516cb8a7040979ddf76","showLevel":0,"recId":5,"fileType":"jpg","fileId":13},{"groupName":"666666","fileName":"d2F0ZXIuanBn","fileRul":"http://oc3d2gkrr.bkt.clouddn.com/1efcc20fa4000d0694c7fbde16dfe2b0?e=1632973003&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:xn6fyJOtjujT5dfeT-zFKN6bXmA=","posterGroupId":1,"showTime":0,"fileKey":"1efcc20fa4000d0694c7fbde16dfe2b0","showLevel":0,"recId":3,"fileType":"jpg","fileId":12},{"groupName":"666666","fileName":"anlqeWp5anlpLm1wNA==","fileRul":"http://oc3d2gkrr.bkt.clouddn.com/da39288127e7c90f6a4c9f456b40641f?e=1632973003&token=fYyrsLZ1UJ5Puwe3-0KvSzDEIfM1PVpPTiFqv29_:6ZbR6KWVyiP2ELlhtWOvTvloNUQ=","posterGroupId":1,"showTime":0,"fileKey":"da39288127e7c90f6a4c9f456b40641f","showLevel":0,"recId":2,"fileType":"jpg","fileId":11}],"fileGroupNumber":4,"status":1}
+                                                                                         /
+
+
+
+5海报分组
+//海报分组的注册
+http://localhost:8080/api/posterGroup/addPosterGroup?groupName=nicai&&groupDesc=fan	
+{"msg":"注册成功","status":1}                                                        
+
+//海报分组的删除    
+http://localhost:8080/api/posterGroup/deletePosterGroup?groupId=2
+{"msg":"分组删除成功","status":1}                                                    
+
+//海报分组的修改    
+http://localhost:8080/api/posterGroup/updatePosterGroup?groupName=666666666&&groupDesc=kong&&groupId=5
+{"msg":"修改成功","status":1}                                                          
+//请求单个海分组信息  
+http://localhost:8080/api/posterGroup/queryPosterGroup?groupId=3 
+{"groupInfo":{"groupName":"666123666","groupDesc":"kong1","addTime":"1475731436387","groupId":3},"status":1}
+
+//请求全部海报分组信息
+http://localhost:8080/api/posterGroup/queryPosterGroupList?pageNumber=0         对
+{"posterGroupNumber":4,"groupList":[{"groupName":"666666666","groupDesc":"kong","addTime":"1477453533168","groupId":5},{"groupName":"333","groupDesc":"666","addTime":"1475731446262","groupId":4},{"groupName":"666123666","groupDesc":"kong1","addTime":"1475731436387","groupId":3},{"groupName":"666666","groupDesc":"kong","addTime":"","groupId":1}],"status":1}
+                                                                                    5个
+http://localhost:8080/api/user/login                登陆，我默认添加了一个用户为admin 密码为root的
+{
+  "userName": "aaa",
+  "userPwd": "ppp",   前两个为上传的值，后面的为返回的值
+  "登陆成功": {
+    "userId": 10,
+    "recId": 10,
+    "token": "1e8c8786ade9c85eaca725d3b83d4ee2"
+  },
+  "status": 1
+}
+http://localhost:8080/api/deviceGroup/deviceGroupList                   设备分组列表
+{
+  "deviceGroupList": [
+    {
+      "deleteFlag": 0,
+      "groupName": "aklsjdlaksdj",
+      "groupDesc": "5656\r\n",
+      "addTime": "1477629997783",
+      "groupId": 9,
+      "updateTime": 144
+    },
+    {
+      "deleteFlag": 1,
+      "groupName": "aklsjdlaksdj",
+      "groupDesc": "oooooo",
+      "addTime": "1477446170443",
+      "groupId": 8,
+      "updateTime": 2147483647
+    },
+    {
+      "deleteFlag": 0,
+      "groupName": "1321321123j",
+      "groupDesc": "88888",
+      "addTime": "1477192070720",
+      "groupId": 7,
+      "updateTime": 201410
+    },
+    {
+      "deleteFlag": 0,
+      "groupName": "test3",
+      "groupDesc": "test",
+      "addTime": "1475722122495",
+      "groupId": 6,
+      "updateTime": 12345636
+    },
+    {
+      "deleteFlag": 1,
+      "groupName": "text8",
+      "groupDesc": "test1",
+      "addTime": "1475689138984",
+      "groupId": 5,
+      "updateTime": 123436
+    },
+    {
+      "deleteFlag": 0,
+      "groupName": "测试1组",
+      "groupDesc": "",
+      "addTime": "",
+      "groupId": 1,
+      "updateTime": 20
+    }
+  ],
+  "status": 1
+}
+http://localhost:8080/api/file/fileGroupList                          文件列表
+{
+  "fileGroupList": [
+    {
+      "deleteFlag": 0,
+      "fileName": "604115.jpg",
+      "addTime": "1479813711415",
+      "fileKey": "e0e2c312f10ecaafcef6b19ddce5af62",
+      "fileAddress": "",
+      "fileDesc": " ",
+      "fileType": "jpg",
+      "fileId": 21
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "ZWFmODFhNGM1MTBmZDlmOTU2YTVhZDE5MjUyZGQ0MmEyODM0YTQxNC5qcGc=",
+      "addTime": "1479543452488",
+      "fileKey": "c000fd260be6128c55cc27778ae5f4b6",
+      "fileAddress": "",
+      "fileDesc": " ",
+      "fileType": "jpg",
+      "fileId": 20
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "192146474242379.jpg",
+      "addTime": "1479542975838",
+      "fileKey": "22c830bc2d210c5bd98b323573919417",
+      "fileAddress": "",
+      "fileDesc": " ",
+      "fileType": "jpg",
+      "fileId": 19
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "ODEwYTE5ZDhiYzNlYjEzNTJhZTMwZDZhYTAxZWE4ZDNmZDFmNDQzZS5qcGc=",
+      "addTime": "1479542848446",
+      "fileKey": "8f9f3d7b3d8c782c03c18252afc9deea",
+      "fileAddress": "",
+      "fileDesc": "asdasd",
+      "fileType": "jpg",
+      "fileId": 18
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "ZDM5NjlmMTZmZGZhYWY1MWE5YjVhM2U3OGQ1NDk0ZWVmMTFmN2FhNC5qcGc=",
+      "addTime": "1478763945280",
+      "fileKey": "1d9013d73314cf390c57ef771660108f",
+      "fileAddress": "",
+      "fileDesc": "kong",
+      "fileType": "jpg",
+      "fileId": 17
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "UVE/Pz8/Pz8yMDE2MTEwMzE4MzYzMy5qcGc=",
+      "addTime": "1478683702364",
+      "fileKey": "a7d4419794246bb23ef4883e042709b1",
+      "fileAddress": "",
+      "fileDesc": " ",
+      "fileType": "jpg",
+      "fileId": 16
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "Zmxvd2Vycy5qcGc=",
+      "addTime": "1477495237528",
+      "fileKey": "085fc8f4493522fed6b3023a754ebd34",
+      "fileAddress": "",
+      "fileDesc": " ",
+      "fileType": "jpg",
+      "fileId": 15
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "aGVoaGUubXA0",
+      "addTime": "1476767739872",
+      "fileKey": "f7a7c236f8754d0e6e8bcedcc4b220c2",
+      "fileAddress": "",
+      "fileDesc": "test",
+      "fileType": "jpg",
+      "fileId": 14
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "dGlnZXIuanBn",
+      "addTime": "1476765631896",
+      "fileKey": "418c3e279dc89516cb8a7040979ddf76",
+      "fileAddress": "",
+      "fileDesc": " ",
+      "fileType": "jpg",
+      "fileId": 13
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "YWRramFoc2/nLm1wNA==",
+      "addTime": "1476765606857",
+      "fileKey": "1efcc20fa4000d0694c7fbde16dfe2b0",
+      "fileAddress": "",
+      "fileDesc": "kongkong",
+      "fileType": "jpg",
+      "fileId": 12
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "anlqeWp5anlpLm1wNA==",
+      "addTime": "1476754963855",
+      "fileKey": "da39288127e7c90f6a4c9f456b40641f",
+      "fileAddress": "",
+      "fileDesc": "tu",
+      "fileType": "jpg",
+      "fileId": 11
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "anlqeWp5anlpLm1wNA==",
+      "addTime": "1476606864308",
+      "fileKey": "da39288127e7c90f6a4c9f456b40641f",
+      "fileAddress": "",
+      "fileDesc": "tu",
+      "fileType": "jpg",
+      "fileId": 10
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "anlqeWp5anlpLm1wNA==",
+      "addTime": "1476605092941",
+      "fileKey": "da39288127e7c90f6a4c9f456b40641f",
+      "fileAddress": "",
+      "fileDesc": "tu",
+      "fileType": "Zmxvd2VyLmpwZw==",
+      "fileId": 9
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "anlqeWp5anlpLm1wNA==",
+      "addTime": "1476541402614",
+      "fileKey": "da39288127e7c90f6a4c9f456b40641f",
+      "fileAddress": "",
+      "fileDesc": "tu",
+      "fileType": "jpg",
+      "fileId": 8
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "anlqeWp5anlpLm1wNA==",
+      "addTime": "1457972064335",
+      "fileKey": "da39288127e7c90f6a4c9f456b40641f",
+      "fileAddress": "",
+      "fileDesc": "tu",
+      "fileType": "jpg",
+      "fileId": 7
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "anlqeWp5anlpLm1wNA==",
+      "addTime": "1457863819907",
+      "fileKey": "da39288127e7c90f6a4c9f456b40641f",
+      "fileAddress": "",
+      "fileDesc": "tu",
+      "fileType": "mp4",
+      "fileId": 5
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "anlqeWp/nnlpLm1wNA==",
+      "addTime": "1457860251582",
+      "fileKey": "da39288127e7c90f6a4c9f456b40641f",
+      "fileAddress": "",
+      "fileDesc": "tu",
+      "fileType": "mp4",
+      "fileId": 4
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "bmkuanBn",
+      "addTime": "1457859639036",
+      "fileKey": "418c3e279dc89516cb8a7040979ddf76",
+      "fileAddress": "",
+      "fileDesc": "tustsi",
+      "fileType": "jpg",
+      "fileId": 3
+    },
+    {
+      "deleteFlag": 0,
+      "fileName": "anlqeWp5anlpLm1wNA==",
+      "addTime": "1457771089748",
+      "fileKey": "da39288127e7c90f6a4c9f456b40641f",
+      "fileAddress": "",
+      "fileDesc": "tu",
+      "fileType": "png",
+      "fileId": 2
+    }
+  ],
+  "status": 1
+}
+http://localhost:8080/api/posterGroup/posterGroupList                海报分组查询
+{
+  "posterGroupList": [
+    {
+      "groupName": "123"
+    },
+    {
+      "groupName": "666666666"
+    },
+    {
+      "groupName": "333"
+    },
+    {
+      "groupName": "666123666"
+    },
+    {
+      "groupName": "465465"
+    },
+    {
+      "groupName": "666666"
+    }
+  ],
+  "status": 1
+}

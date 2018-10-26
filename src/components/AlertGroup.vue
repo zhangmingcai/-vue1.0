@@ -1,0 +1,29 @@
+<template>
+	<n3-alert 
+		:show.sync="alertInfo.danger.show"
+  	:duration="2000"
+    width="400px"
+  	type="danger"
+  	placement="top"
+  	message="警告"
+  	description
+  	dismissable>
+  	<p>{{alertInfo.danger.msg}}</p>
+	</n3-alert>
+	<n3-alert 
+		:show.sync="alertInfo.success.show"
+  	:duration="2000"
+    width="400px"
+  	type="success"
+  	placement="top"
+  	message="成功"
+  	description
+  	dismissable>
+  	<p>{{alertInfo.success.msg}}</p>
+  </n3-alert>
+</template>
+<script>
+  export default{
+    props: ['alertInfo']
+  }
+</script>
